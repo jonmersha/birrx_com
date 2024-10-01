@@ -5,7 +5,7 @@ const Query = require("../utils/select");
 const apiKeyMiddleware = require("../utils/api_check");
 const callFunc = require("../db/call_backs");
 
-const db_name = "merchants";
+const db_name = "subscription_plans";
 
 //Returnining All User Data
 router.get("/data", apiKeyMiddleware.apiKeyMiddleware, async (req, res) => {
@@ -14,8 +14,8 @@ router.get("/data", apiKeyMiddleware.apiKeyMiddleware, async (req, res) => {
 });
 //Returnining All User Data
 router.get("/data/:ID", apiKeyMiddleware.apiKeyMiddleware, async (req, res) => {
-  const merchant_id = req.params.ID;
-  const stm = Query.byID(db_name, "merchant_id", merchant_id);
+  const user_id = req.params.ID;
+  const stm = Query.byID(db_name, "user_id", user_id);
   callFunc.DBO(stm, res, "Error Getting Data!!");
 });
 

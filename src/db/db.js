@@ -1,6 +1,5 @@
 const mysql = require("mysql");
 require("dotenv").config();
-console.log(process.env.DBUSER);
 function fetchDataFromMySQL(query, callback) {
   const connection = mysql.createConnection({
     host: process.env.HOST,
