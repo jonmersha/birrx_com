@@ -7,7 +7,7 @@ const callFunc = require("../db/call_backs");
 
 const db_name = "merchants";
 
-//Returnining All User Data
+//Returnining All merchant Data
 router.get("/data", apiKeyMiddleware.apiKeyMiddleware, async (req, res) => {
   const stm = Query.all(db_name);
   callFunc.DBO(stm, res, "Error Getting Data!!");
