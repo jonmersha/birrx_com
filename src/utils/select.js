@@ -31,6 +31,27 @@ function select2key(tableName, key1, id1, key2, id2) {
 function selectCTRCount(tableName, id, KEY) {
   return `SELECT Count(*) as count FROM ${tableName} where ${KEY}=${id}`;
 }
+
+function SELECT_WITH_CRIATERIA(tableName, criteria, connector) {
+  let query = `SELECT * FROM ${tableName} WHERE `;
+  let conditions = [];
+  for (const key in criteria) {
+    if (criteria.hasOwnProperty(key)) {
+      let value =
+        typeof criteria[key] === "string"
+          ? `'${criteria[key]}'`
+          : criteria[key];
+      conditions.push(`${key} = ${value}`);
+    }
+  }
+
+  // Join the conditions with AND and append to the query
+  query += conditions.join(` ${connector} `);
+  console.log(query);
+
+  return query;
+}
+
 module.exports = {
   all,
   selectCTR,
@@ -40,4 +61,5 @@ module.exports = {
   all_by_merchant,
   selectCTRString,
   byID,
+  SELECT_WITH_CRIATERIA,
 };
