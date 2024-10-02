@@ -15,8 +15,8 @@ app.use("/get", getRoutes);
 app.use("/post", postRoutes);
 
 //Remote Service Configurations
-//app.listen();
+app.listen();
 
-app.listen(port, () => {
-  console.log(`Server Statrted @ ${port}`);
-});
+// app.listen(port, () => {
+//   console.log(`Server Statrted @ ${port}`);
+// });
