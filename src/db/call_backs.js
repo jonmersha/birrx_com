@@ -25,7 +25,13 @@ function addDataCallBack(stm, res) {
     if (error) {
       res.status(500).json({ error: "Error addings" });
     } else {
-      res.json({ Data: results });
+      let result = [
+        {
+          status: "success",
+          effectedRows: results.affectedRows,
+        },
+      ];
+      res.json({ Data: result });
     }
   });
 }

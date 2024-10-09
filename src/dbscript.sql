@@ -387,3 +387,10 @@ CREATE INDEX idx_promotion_merchant ON promotions(merchant_id);
 CREATE INDEX idx_promotion_product ON promotion_products(promotion_id, product_id);
 CREATE INDEX idx_promotion_view_user ON promotion_views(promotion_id, user_id);
 CREATE INDEX idx_promotion_click_user ON promotion_clicks(promotion_id, user_id);
+
+
+-- Merchant Table Update
+LTER TABLE `beshegercom_ecom`.`merchants` 
+ADD COLUMN `merchant_logo` VARCHAR(100) NULL AFTER `updated_at`,
+ADD COLUMN `merchant_header` VARCHAR(100) NULL AFTER `merchant_logo`,
+ADD COLUMN `descriptions` VARCHAR(45) NULL AFTER `merchant_header`;

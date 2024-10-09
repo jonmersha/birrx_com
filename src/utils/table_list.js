@@ -20,6 +20,8 @@
   "18. subscription_plans",
   "19. users"
   "20 product_full
+  "21 product_catergory"
+  "22 promotion_view"
 ]
  */
 
@@ -45,5 +47,7 @@ let table = [
   "subscription_plans",
   "users",
   "product_full",
+  "product_catergory",
+  "promotion_view",
 ];
 module.exports = table;

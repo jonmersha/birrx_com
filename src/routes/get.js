@@ -31,6 +31,7 @@ router.put(
   async (req, res) => {
     const ID = req.params.tableId;
     const connector = req.params.connector;
+    console.log(req.body);
     const stm = Query.SELECT_WITH_CRIATERIA(table[ID], req.body, connector);
     callFunc.DBO(stm, res, "Error Getting Data!!");
   }

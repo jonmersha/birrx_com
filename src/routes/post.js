@@ -14,35 +14,6 @@ router.post("/data/:id", (req, res) => {
   callFunc.addDataCallBack(stm, res);
 });
 
-//image uploader
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "./public/uploads"); // Save files to "public/uploads"
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + path.extname(file.originalname)); // Rename file to avoid conflicts
-  },
-});
-
-const upload = multer({
-  storage: storage,
-  fileFilter: function (req, file, cb) {
-    checkFileType(file, cb);
-  },
-}).single("image");
-// Check file type (only images)
-function checkFileType(file, cb) {
-  const filetypes = /jpeg|jpg|png|gif/;
-  const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
-  const mimetype = filetypes.test(file.mimetype);
-
-  if (mimetype && extname) {
-    return cb(null, true);
-  } else {
-    cb("Error: Images Only!");
-  }
-}
-
 // API route to upload image
 router.post("/upload/:id", (req, res) => {
   upload(req, res, (err) => {
@@ -57,12 +28,32 @@ router.post("/upload/:id", (req, res) => {
     const id = req.params.id;
     let stm = `update products set image_url='/uploads/${req.file.filename}' where product_id=${id}`;
     callFunc.addDataCallBack(stm, res);
-
-    // res.send({
-    //   message: "File uploaded successfully!",
-    //   filePath: `/uploads/${req.file.filename}`,
-    // });
   });
+});
+
+// Configure storage for multer
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "public/uploads"); // Set the destination to the public/uploads directory
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}-${file.originalname}`); // Use timestamp to prevent file name collisions
+  },
+});
+
+// Initialize multer with the defined storage
+const upload = multer({ storage });
+
+router.post("/upl/:recId", upload.single("image"), (req, res) => {
+  //const table = req.params.tableId;
+  const recID = req.params.recId;
+
+  //const id = req.params.id;
+  let stm = `update products set image_url='/uploads/${req.file.filename}' where product_id=${recID}`;
+  callFunc.addDataCallBack(stm, res);
+
+  // let stm = updateOP.update(table, body);
+  //callFunc.DBO(stm, res, "Error Uploading Images");
 });
 
 module.exports = router;
