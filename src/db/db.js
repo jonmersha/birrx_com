@@ -7,6 +7,7 @@ function fetchDataFromMySQL(query, callback) {
     database: process.env.DATABASE,
     password: process.env.SCR123423423vxfsd,
   });
+  //File Setting
 
   connection.connect((error) => {
     if (error) {
