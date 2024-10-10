@@ -16,12 +16,13 @@ const getRoutes = require("./src/routes/get");
 const postRoutes = require("./src/routes/post");
 const updateRoutes = require("./src/routes/update");
 const fileRoutes = require("./src/routes/file");
-
+///Router
 app.use("/get", getRoutes);
 app.use("/post", postRoutes);
 app.use("/put", updateRoutes);
 app.use("/upload", fileRoutes);
-
-app.listen(port, () => {
-  console.log(`Server Statrted @ ${port}`);
-});
+//App Listerners
+app.listen();
+// app.listen(port, () => {
+//   console.log(`Server Statrted @ ${port}`);
+// });
